@@ -1,47 +1,58 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+import { reactive } from "vue";
+import Formulario from "./components/Formulario.vue";
+import Header from "./components/Header.vue";
+
+const estado = reactive({
+  filtro: "multiplicacao",
+  numero1: 0,
+  numero2: 0,
+});
+
+const multiplicacao = ({ numero1, numero2 } = estado) => {
+  return numero1 * numero2;
+};
+
+const adicao = ({ numero1, numero2 } = estado) => {
+  return numero1 + numero2;
+};
+
+const subtracao = ({ numero1, numero2 } = estado) => {
+  return numero1 - numero2;
+};
+
+const divisao = ({ numero1, numero2 } = estado) => {
+  return numero1 / numero2;
+};
+
+const matematica = () => {
+  const { numero1, numero2, filtro } = estado;
+
+  switch (filtro) {
+    case "multiplicacao":
+      return multiplicacao();
+    case "adicao":
+      return adicao();
+    case "subtracao":
+      return subtracao();
+    case "divisao":
+      return divisao();
+  }
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="container">
+    <Header />
+    <Formulario
+      :trocar-filtro="(event) => (estado.filtro = event)"
+      :valor-numero1="(event) => (estado.numero1 = event)"
+      :valor-numero2="(event) => (estado.numero2 = event)"
+    />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+    <p class="mt-4 fs-2">O resultado é {{ matematica() }}</p>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>

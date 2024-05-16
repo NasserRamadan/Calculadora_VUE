@@ -3,7 +3,7 @@ const props = defineProps(["valorNumero1", "valorNumero2", "trocarFiltro"]);
 </script>
 
 <template>
-  <form>
+  <form class="mt-4">
     <div class="row d-flex align-items-center">
       <div class="col gap-2 d-flex">
         <input @keyup="props.valorNumero1" class="form-control" type="number" />

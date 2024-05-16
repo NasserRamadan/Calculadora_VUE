@@ -52,7 +52,7 @@ const matematica = () => {
       :valor-numero2="(event) => (estado.numero2 = Number(event.target.value))"
     />
 
-    <p class="mt-4 fs-2">O resultado é {{ matematica() }}</p>
+    <p class="mt-4 fs-2 text-center">O resultado é {{ matematica() }}</p>
   </div>
 </template>
 

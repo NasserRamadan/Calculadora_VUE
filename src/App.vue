@@ -28,15 +28,17 @@ const divisao = ({ numero1, numero2 } = estado) => {
 const matematica = () => {
   const { numero1, numero2, filtro } = estado;
 
-  switch (filtro) {
-    case "multiplicacao":
-      return multiplicacao();
-    case "adicao":
-      return adicao();
-    case "subtracao":
-      return subtracao();
-    case "divisao":
-      return divisao();
+  if ((numero1, numero2)) {
+    switch (filtro) {
+      case "multiplicacao":
+        return multiplicacao();
+      case "adicao":
+        return adicao();
+      case "subtracao":
+        return subtracao();
+      case "divisao":
+        return divisao();
+    }
   }
 };
 </script>
@@ -45,9 +47,9 @@ const matematica = () => {
   <div class="container">
     <Header />
     <Formulario
-      :trocar-filtro="(event) => (estado.filtro = event)"
-      :valor-numero1="(event) => (estado.numero1 = event)"
-      :valor-numero2="(event) => (estado.numero2 = event)"
+      :trocar-filtro="(event) => (estado.filtro = event.target.value)"
+      :valor-numero1="(event) => (estado.numero1 = Number(event.target.value))"
+      :valor-numero2="(event) => (estado.numero2 = Number(event.target.value))"
     />
 
     <p class="mt-4 fs-2">O resultado é {{ matematica() }}</p>
